@@ -1,0 +1,28 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breast Cancer Prediction</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 Breast Cancer Prediction</h1>
+    <form method="POST" action="/predict">
+      {% for feature in features %}
+        <label>{{ feature }}</label>
+        <input type="number" step="0.01" name="{{ feature }}" required><br>
+      {% endfor %}
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result">
+        <h2>Prediction: {{ prediction }}</h2>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
