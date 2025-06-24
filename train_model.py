@@ -1,6 +1,3 @@
-# train_model.py
-
-# Train and save Random Forest model for Breast Cancer prediction
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -23,4 +20,4 @@ rf_model.fit(X_train, y_train)
 # Save the trained model to rf_model.pkl
 joblib.dump(rf_model, "rf_model.pkl")
 
-print("✅ Model trained and saved as rf_model.pkl")
+print(" Model trained and saved as rf_model.pkl")

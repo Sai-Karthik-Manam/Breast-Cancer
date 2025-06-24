@@ -8,7 +8,6 @@ app = Flask(__name__)
 # Load the trained model
 model = joblib.load("rf_model.pkl")
 
-# Define the features (must match training)
 features = ['radius_mean', 'texture_mean', 'perimeter_mean', 'area_mean',
             'smoothness_mean', 'compactness_mean', 'concavity_mean', 'concave points_mean',
             'symmetry_mean', 'fractal_dimension_mean', 'radius_se', 'texture_se',
@@ -27,7 +26,7 @@ def predict():
     input_data = [float(request.form[f]) for f in features]
     df = pd.DataFrame([input_data], columns=features)
     pred = model.predict(df)[0]
-    prediction = "🔴 Malignant (Cancerous)" if pred == "M" else "🟢 Benign (Non-Cancerous)"
+    prediction = "Malignant (Cancerous)" if pred == "M" else "Benign (Non-Cancerous)"
     return render_template("index.html", features=features, prediction=prediction)
 
 if __name__ == "__main__":
