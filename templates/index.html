@@ -1,4 +1,3 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,18 +8,31 @@
 </head>
 <body>
   <div class="container">
-    <h1>🧠 Breast Cancer Prediction</h1>
-    <form method="POST" action="/predict">
+    <h1>Breast Cancer Prediction</h1>
+
+    <form method="POST" action="/predict" enctype="multipart/form-data">
+      <h3>Upload CSV for Batch Prediction</h3>
+      <input type="file" name="csvfile" accept=".csv"><br><br>
+
+      <h3>Or Enter Features Manually</h3>
       {% for feature in features %}
         <label>{{ feature }}</label>
-        <input type="number" step="0.01" name="{{ feature }}" required><br>
+        <input type="number" step="0.01" name="{{ feature }}"><br>
       {% endfor %}
+
       <button type="submit">Predict</button>
     </form>
 
     {% if prediction %}
       <div class="result">
         <h2>Prediction: {{ prediction }}</h2>
+      </div>
+    {% endif %}
+
+    {% if table %}
+      <div class="result">
+        <h3>Batch Results:</h3>
+        {{ table | safe }}
       </div>
     {% endif %}
   </div>
